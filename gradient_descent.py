@@ -10,7 +10,7 @@ def df(x):
     return 0.4 * x - 2.4 / x - 3
 
 
-def grad_descent(x, lr):
+def gd(x, lr):
     return x - lr * df(x)
 
 
@@ -22,9 +22,13 @@ def main():
 
     x = 1.5
     lr = 0.1
-    for i in range(1000):
-        x = grad_descent(x, lr)
-        print(x)
+    epison = 1e-6
+    while True:
+        x_new = gd(x, lr)
+        if abs(x_new - x) < epison:
+            break
+        x = x_new
+    print(x)
 
 
 if __name__ == '__main__':
